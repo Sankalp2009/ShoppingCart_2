@@ -29,8 +29,8 @@ const reducer = (currentState = initialState, action) => {
     case 'Get_Failure':
       return {
         ...currentState,
-        isLoading: true,
-        isError: false,
+        isLoading: false,
+        isError: true,
         error: payload,
         items: [],
       }
