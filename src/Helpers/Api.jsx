@@ -1,9 +1,5 @@
-import React from 'react'
-
-function Api() {
-  return (
-    <div>Api</div>
-  )
+import axios from "axios";
+export const getApi = async(url)=>{
+  let Res  = await axios.get(url);
+  return Res;
 }
-
-export default Api
