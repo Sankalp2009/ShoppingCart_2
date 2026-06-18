@@ -1,9 +1,10 @@
-import React from 'react'
+import { legacy_createStore, compose } from "redux";
+import {reducer as data_reducer} from './data_reducer/reducer'
 
-function Store() {
-  return (
-    <div>Store</div>
-  )
-}
+// Redux DevTools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-export default Store
+// Store
+const store = legacy_createStore(data_reducer, composeEnhancers());
+
+export { store }
