@@ -1,8 +1,13 @@
 import React from 'react'
 
-function ProductCard() {
+function ProductCard({ product }) {
+  
+  const { id, thumbnail, title, price, category } = product;
+
   return (
-    <div>ProductCard</div>
+    <div>
+      
+    </div>
   )
 }
 

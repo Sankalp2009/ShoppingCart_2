@@ -5,8 +5,9 @@ import { Action_Type } from '../Redux/data_reducer/Action'
 import Product from '../Component/Product'
 
 function Dashboard() {
-  const dispatch = useDispatch()
-  const { isLoading, isError, error, items } = useSelector((state) => state)
+  
+  const dispatch = useDispatch();
+  const { isLoading, isError, error, items } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch({
