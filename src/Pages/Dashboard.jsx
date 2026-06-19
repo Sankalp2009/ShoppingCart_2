@@ -7,7 +7,7 @@ import Product from '../Component/Product'
 function Dashboard() {
   
   const dispatch = useDispatch();
-  const { isLoading, isError, error, items } = useSelector((state) => state);
+  const { isLoading, isError, error, items } = useSelector((state) => state.Product);
 
   useEffect(() => {
     dispatch({
