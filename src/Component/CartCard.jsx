@@ -1,18 +1,10 @@
 import { useDispatch } from 'react-redux'
 import { Action_Type } from '../Redux/cart_reducer/Action'
-function ProductCard({ product }) {
-  
-  const { thumbnail, title, price, category } = product
-  
-  const dispatch = useDispatch();
-  
-  const HandleClick = ()=>{
-    dispatch({
-      type: Action_Type.Add_Cart,
-      payload: product,
-    })
-  }
-  
+import { Trash2 } from 'lucide-react'
+function CartCard({ product }) {
+  const { id, thumbnail, title, price, category } = product
+  const dispatch = useDispatch()
+
   return (
     <div className="product-card">
       {/* Image */}
@@ -31,16 +23,18 @@ function ProductCard({ product }) {
         </h3>
 
         <p className="product-price">₹ {Math.floor(price)}</p>
-      </div>
 
-      <button
-        className="add-cart-btn"
-        onClick={HandleClick}
-      >
-        Add to cart
-      </button>
+        <Trash2
+          onClick={() => {
+            dispatch({
+              type: Action_Type.Remove_Cart,
+              payload: id,
+            })
+          }}
+        />
+      </div>
     </div>
   )
 }
 
-export default ProductCard
+export default CartCard
