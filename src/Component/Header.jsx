@@ -2,7 +2,7 @@ import { ShoppingCart } from 'lucide-react'
 import Search from './Search'
 import { Link } from 'react-router'
 import { useSelector } from 'react-redux'
-function Header() {
+function Header({query, setQuery}) {
   const cart = useSelector((state) => state.Cart)
   const length = cart?.cart_data?.length || 0
 
@@ -17,7 +17,7 @@ function Header() {
         <h3>About</h3>
       </div>
       <div>
-        <Search />
+        <Search query={query} setQuery={setQuery} />
       </div>
       <div className="cart-wrapper">
         <Link to={'/cart'}>
