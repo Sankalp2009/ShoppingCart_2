@@ -1,6 +1,5 @@
 import ProductCard from '../Component/ProductCard'
 function Product({ data }) {
-  console.log(data);
   
   return (
     <div className="product-wrapper">

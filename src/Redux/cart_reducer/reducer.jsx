@@ -3,7 +3,6 @@ const initialState = {
 }
 
 const reducer = (currentState = initialState, { type, payload }) => {
-  console.log(payload)
   switch (type) {
     case 'Add_Cart': {
       // Duplicate Check

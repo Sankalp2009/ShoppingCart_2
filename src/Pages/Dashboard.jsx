@@ -4,31 +4,49 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Action_Type } from '../Redux/data_reducer/Action'
 import Product from '../Component/Product'
 
-function Dashboard() {
-  
-  const dispatch = useDispatch();
-  const { isLoading, isError, error, items } = useSelector((state) => state.Product);
-
+function Dashboard({ query }) {
+  const dispatch = useDispatch()
+  const { isLoading, isError, error, items } = useSelector(
+    (state) => state.Product
+  )
   useEffect(() => {
-    dispatch({
-      type: Action_Type.Get_Request,
-    })
-    getApi('https://dummyjson.com/products')
-      .then((data) => {
-        if (!data?.status) throw new Error('Data not fetch')
-        let product = data?.data?.products
+    const controller = new AbortController();
+  
+    const timerID = setTimeout(async () => {
+      const trimmed = query.trim();
+  
+      dispatch({ type: Action_Type.Get_Request });
+  
+      try {
+        const url = trimmed
+          ? `https://dummyjson.com/products/search?q=${trimmed}`
+          : "https://dummyjson.com/products";
+  
+        const data = await getApi(url, {
+          signal: controller.signal,
+        });
+  
+        if (!data?.status) throw new Error("Data not fetched");
+  
         dispatch({
           type: Action_Type.Get_Success,
-          payload: product,
-        })
-      })
-      .catch((err) => {
+          payload: data.data.products,
+        });
+      } catch (err) {
+        if (err.name === "AbortError") return;
+  
         dispatch({
           type: Action_Type.Get_Failure,
-          payload: err,
-        })
-      })
-  }, [dispatch])
+          payload: err.message,
+        });
+      }
+    }, 500);
+  
+    return () => {
+      clearTimeout(timerID);
+      controller.abort();
+    };
+  }, [query, dispatch]);
 
   return (
     <div>

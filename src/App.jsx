@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Header query={query} setQuery={setQuery} />
-      <AllRoutes query={query} setQuery={setQuery} />
+      <AllRoutes query={query} />
     </>
   )
 }
