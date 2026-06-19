@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 function Header({query, setQuery}) {
   const cart = useSelector((state) => state.Cart)
   const length = cart?.cart_data?.length || 0
-
+  
   return (
     <div className="Header">
       <div>
