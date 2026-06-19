@@ -1,11 +1,14 @@
-
-function Search() {
+function Search({ query, setQuery }) {
   return (
     <div>
-      <input 
-      type="text" 
-      name="Search"
-      placeholder="Enter Search..."
+      <input
+        type="text"
+        name="Search"
+        value={query}
+        placeholder="Enter Search..."
+        onChange={(e) => {
+          setQuery(e.target.value)
+        }}
       />
     </div>
   )
